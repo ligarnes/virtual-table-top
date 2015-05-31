@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CombatUnit xmlns="http://www.alteiar.net/CombatTracker">
+    <id>0</id>
+    <unitId>0</unitId>
+    <initiative>12</initiative>
+    <faction>NEUTRAL</faction>
+</CombatUnit>

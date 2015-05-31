@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Unit xmlns="http://www.alteiar.net/CombatTracker">
+    <id>1</id>
+    <name>gobelin</name>
+    <image>file:C:\Users\ligarnes\Desktop\cartes\0946cc77d943ac01fe09a330975d3e6d.media.100x155.jpg</image>
+    <currentDamage>5</currentDamage>
+    <healthPoint>12</healthPoint>
+    <armorClass>18</armorClass>
+</Unit>

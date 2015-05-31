@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="currentTurn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox alignment="CENTER" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0">
+         <children>
+            <ImageView fx:id="characterImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+            </ImageView>
+         </children>
+      </HBox>
+      <Label fx:id="characterName" maxWidth="1.7976931348623157E308" minWidth="70.0" text="label" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+      </Label>
+      <TextField fx:id="characterInit" alignment="CENTER" maxWidth="50.0" minWidth="50.0" prefWidth="50.0">
+      </TextField>
+      <TextField fx:id="characterHp" alignment="CENTER" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0">
+      </TextField>
+      <TextField fx:id="characterDamage" alignment="CENTER" editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0">
+      </TextField>
+      <ImageView fx:id="characterFaction" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-style: dashed;" GridPane.columnIndex="5">
+      </ImageView>
+   </children>
+</HBox>
