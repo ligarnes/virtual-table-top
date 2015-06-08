@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Campaign xmlns="http://www.alteiar.net/BasicTypes" xmlns:ns2="http://www.alteiar.net/Campaign">
+    <id>0</id>
+    <ns2:unitsId>0</ns2:unitsId>
+    <ns2:unitsId>1</ns2:unitsId>
+</ns2:Campaign>

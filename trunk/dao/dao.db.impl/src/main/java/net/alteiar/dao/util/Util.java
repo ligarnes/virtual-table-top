@@ -14,8 +14,7 @@ public class Util {
 				object.close();
 			} catch (IOException e) {
 
-				LoggerFactory.getLogger(Util.class).debug(
-						"Fail to close the element {}", object, e);
+				LoggerFactory.getLogger(Util.class).debug("Fail to close the element {}", object, e);
 			}
 		}
 	}

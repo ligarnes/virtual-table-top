@@ -2,7 +2,7 @@ package net.alteiar.db.dao;
 
 import java.util.List;
 
-import net.alteiar.combattracker.Unit;
+import net.alteiar.basictypes.Unit;
 import net.alteiar.db.dao.exception.DataException;
 import net.alteiar.engine.observer.DataObservable;
 

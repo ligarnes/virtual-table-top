@@ -1,6 +1,6 @@
-package net.alteiar.db.dao;
+package net.alteiar.db.dao.combat;
 
-import net.alteiar.combattracker.CombatUnit;
+import net.alteiar.basictypes.CombatUnit;
 import net.alteiar.db.dao.exception.DataException;
 import net.alteiar.engine.observer.DataObservable;
 

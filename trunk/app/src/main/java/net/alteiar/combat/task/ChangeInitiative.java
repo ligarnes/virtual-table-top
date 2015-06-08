@@ -1,6 +1,6 @@
 package net.alteiar.combat.task;
 
-import net.alteiar.combattracker.CombatUnit;
+import net.alteiar.basictypes.CombatUnit;
 import net.alteiar.dao.api.DaoFactorySingleton;
 import net.alteiar.db.dao.exception.DataException;
 import net.alteiar.engine.task.impl.TaskBase;
@@ -16,8 +16,7 @@ public class ChangeInitiative extends TaskBase {
 
 		CombatUnit unit;
 		try {
-			unit = DaoFactorySingleton.getInstance().getCombatUnitDao()
-					.find(combatUnit.getId());
+			unit = DaoFactorySingleton.getInstance().getCombatUnitDao().find(combatUnit.getId());
 
 			unit.setInitiative(initiative);
 

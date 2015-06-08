@@ -1,7 +1,7 @@
 package net.alteiar.dao.impl;
 
-import net.alteiar.combattracker.CombatUnit;
-import net.alteiar.combattracker.Faction;
+import net.alteiar.basictypes.CombatUnit;
+import net.alteiar.basictypes.Faction;
 import net.alteiar.dao.combat.impl.CombatUnitDaoImpl;
 import net.alteiar.db.dao.exception.DataException;
 

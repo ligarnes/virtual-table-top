@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
-import net.alteiar.combattracker.ObjectFactory;
-import net.alteiar.combattracker.Unit;
+import net.alteiar.basictypes.ObjectFactory;
+import net.alteiar.basictypes.Unit;
 import net.alteiar.dao.util.XmlDao;
 import net.alteiar.db.dao.UnitDao;
 import net.alteiar.db.dao.exception.DataException;
@@ -21,8 +21,7 @@ public class UnitDaoImpl extends XmlDao<Unit> implements UnitDao {
 			super.initialize(Unit.class);
 		} catch (JAXBException e) {
 
-			LoggerFactory.getLogger(getClass()).error(
-					"Fail to initialize the dao", e);
+			LoggerFactory.getLogger(getClass()).error("Fail to initialize the dao", e);
 		}
 	}
 
@@ -33,9 +32,7 @@ public class UnitDaoImpl extends XmlDao<Unit> implements UnitDao {
 
 		if (exist(unit)) {
 
-			String errorMsg = String.format(
-					"Fail to insert the unit {%s}, the unit already exist",
-					unit.getId());
+			String errorMsg = String.format("Fail to insert the unit {%s}, the unit already exist", unit.getId());
 			throw new DataException(errorMsg);
 		}
 
@@ -57,9 +54,7 @@ public class UnitDaoImpl extends XmlDao<Unit> implements UnitDao {
 			fireDataChanged(unit.getId());
 		} else {
 
-			String errorMsg = String.format(
-					"The  unit {%s} does not exist and cannot be updated",
-					unit.getId());
+			String errorMsg = String.format("The  unit {%s} does not exist and cannot be updated", unit.getId());
 			throw new DataException(errorMsg);
 		}
 	}
@@ -92,9 +87,7 @@ public class UnitDaoImpl extends XmlDao<Unit> implements UnitDao {
 			fireDataRemoved(unit.getId());
 		} else {
 
-			String errorMsg = String.format(
-					"Fail to delete the  unit {%s}, the unit does not exist",
-					unit.getId());
+			String errorMsg = String.format("Fail to delete the  unit {%s}, the unit does not exist", unit.getId());
 			throw new DataException(errorMsg);
 		}
 	}

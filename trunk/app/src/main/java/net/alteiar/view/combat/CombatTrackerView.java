@@ -1,20 +1,20 @@
-package net.alteiar.view;
+package net.alteiar.view.combat;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import net.alteiar.combattracker.CombatTracker;
+import net.alteiar.basictypes.CombatTracker;
 import net.alteiar.dao.api.DaoFactorySingleton;
 import net.alteiar.db.dao.exception.DataException;
 import net.alteiar.engine.observer.DataModificationAdapter;
+import net.alteiar.view.exception.FXMLException;
+import net.alteiar.view.fxml.FxmlLoader;
 
 public class CombatTrackerView implements Initializable {
 
@@ -27,17 +27,11 @@ public class CombatTrackerView implements Initializable {
 		combatTrackerId = combatTracker.getId();
 	}
 
-	public Node loadView() throws IOException {
+	public Node loadView() throws FXMLException {
 
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-				"/view/combatView.fxml"));
-		fxmlLoader.setController(this);
+		Node currentView = FxmlLoader.getInstance().loadView("/view/combat/combatView.fxml", this);
 
-		Node currentView = fxmlLoader.load();
-
-		ScrollPane scroll = new ScrollPane(currentView);
-
-		return scroll;
+		return new ScrollPane(currentView);
 	}
 
 	@Override
@@ -59,32 +53,36 @@ public class CombatTrackerView implements Initializable {
 
 	}
 
-	private void revalidate() {
-
-		unitsView.getChildren().clear();
+	private CombatTracker getCombatTracker() {
 
 		CombatTracker combatTracker = null;
-
 		try {
-			combatTracker = DaoFactorySingleton.getInstance()
-					.getCombatTrackerDao().find(combatTrackerId);
+			combatTracker = DaoFactorySingleton.getInstance().getCombatTrackerDao().find(combatTrackerId);
 		} catch (DataException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
+		return combatTracker;
+	}
+
+	private void revalidate() {
+
+		unitsView.getChildren().clear();
+
+		CombatTracker combatTracker = getCombatTracker();
+
 		if (combatTracker != null) {
 
 			for (Long characterId : combatTracker.getCombatUnitId()) {
 
-				CombatTrackerCharacterView view = new CombatTrackerCharacterView(
-						characterId);
+				CombatTrackerCharacterView view = new CombatTrackerCharacterView(characterId);
 
 				try {
 
 					Node node = view.loadView();
 					unitsView.getChildren().add(node);
-				} catch (IOException e) {
+				} catch (FXMLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

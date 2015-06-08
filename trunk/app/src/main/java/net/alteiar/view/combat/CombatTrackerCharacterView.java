@@ -1,28 +1,28 @@
-package net.alteiar.view;
+package net.alteiar.view.combat;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import net.alteiar.basictypes.CombatUnit;
+import net.alteiar.basictypes.Faction;
+import net.alteiar.basictypes.Unit;
 import net.alteiar.combat.task.ChangeFaction;
-import net.alteiar.combattracker.CombatUnit;
-import net.alteiar.combattracker.Faction;
-import net.alteiar.combattracker.Unit;
 import net.alteiar.dao.api.DaoFactorySingleton;
-import net.alteiar.db.dao.CombatUnitDao;
 import net.alteiar.db.dao.UnitDao;
+import net.alteiar.db.dao.combat.CombatUnitDao;
 import net.alteiar.db.dao.exception.DataException;
 import net.alteiar.engine.PlatformContext;
 import net.alteiar.engine.observer.DataModificationAdapter;
+import net.alteiar.view.exception.FXMLException;
+import net.alteiar.view.fxml.FxmlLoader;
 
 public class CombatTrackerCharacterView implements Initializable {
 
@@ -47,8 +47,7 @@ public class CombatTrackerCharacterView implements Initializable {
 
 		this.characterCombatId = characterId;
 
-		CombatUnitDao dao = DaoFactorySingleton.getInstance()
-				.getCombatUnitDao();
+		CombatUnitDao dao = DaoFactorySingleton.getInstance().getCombatUnitDao();
 
 		dao.addDataListener(new DataModificationAdapter(characterCombatId) {
 
@@ -68,8 +67,7 @@ public class CombatTrackerCharacterView implements Initializable {
 
 	public CombatUnit getCombatUnit() {
 
-		CombatUnitDao dao = DaoFactorySingleton.getInstance()
-				.getCombatUnitDao();
+		CombatUnitDao dao = DaoFactorySingleton.getInstance().getCombatUnitDao();
 
 		try {
 			return dao.find(characterCombatId);
@@ -95,13 +93,9 @@ public class CombatTrackerCharacterView implements Initializable {
 		return null;
 	}
 
-	public Node loadView() throws IOException {
+	public Node loadView() throws FXMLException {
 
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-				"/view/characterView.fxml"));
-		fxmlLoader.setController(this);
-
-		return fxmlLoader.load();
+		return FxmlLoader.getInstance().loadView("/view/combat/characterView.fxml", this);
 	}
 
 	@Override
@@ -130,13 +124,10 @@ public class CombatTrackerCharacterView implements Initializable {
 
 				characterInit.setText(init.toString());
 			}
-			characterHp.setText(Integer.valueOf(character.getHealthPoint())
-					.toString());
-			characterDamage.setText(Integer.valueOf(
-					character.getCurrentDamage()).toString());
+			characterHp.setText(Integer.valueOf(character.getHealthPoint()).toString());
+			characterDamage.setText(Integer.valueOf(character.getCurrentDamage()).toString());
 
-			characterFaction.setImage(getFactionImage(characterCombat
-					.getFaction()));
+			characterFaction.setImage(getFactionImage(characterCombat.getFaction()));
 
 			characterFaction.setOnMouseClicked(event -> {
 				changeFaction(characterCombat);
@@ -147,13 +138,9 @@ public class CombatTrackerCharacterView implements Initializable {
 
 	private void changeFaction(CombatUnit combatUnit) {
 
-		ChangeFaction changeFaction = new ChangeFaction(combatUnit,
-				getNext(combatUnit.getFaction()));
+		ChangeFaction changeFaction = new ChangeFaction(combatUnit, getNext(combatUnit.getFaction()));
 
 		PlatformContext.getInstance().getTaskEngine().enqueue(changeFaction);
-
-		// characterFaction
-		// .setImage(getFactionImage(characterCombat.getFaction()));
 	}
 
 	private Faction getNext(Faction current) {
@@ -170,20 +157,16 @@ public class CombatTrackerCharacterView implements Initializable {
 
 		switch (faction) {
 		case ALLY:
-			found = new Image(getClass().getResourceAsStream(
-					"/icons/ct_faction_friend.png"));
+			found = new Image(getClass().getResourceAsStream("/icons/ct_faction_friend.png"));
 			break;
 		case ENNEMY:
-			found = new Image(getClass().getResourceAsStream(
-					"/icons/ct_faction_foe.png"));
+			found = new Image(getClass().getResourceAsStream("/icons/ct_faction_foe.png"));
 			break;
 		case NEUTRAL:
-			found = new Image(getClass().getResourceAsStream(
-					"/icons/ct_faction_neutral.png"));
+			found = new Image(getClass().getResourceAsStream("/icons/ct_faction_neutral.png"));
 			break;
 		default:
-			found = new Image(getClass().getResourceAsStream(
-					"/icons/ct_faction_neutral.png"));
+			found = new Image(getClass().getResourceAsStream("/icons/ct_faction_neutral.png"));
 			break;
 		}
 		return found;

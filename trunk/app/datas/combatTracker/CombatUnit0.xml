@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<CombatUnit xmlns="http://www.alteiar.net/CombatTracker">
+<CombatUnit xmlns="http://www.alteiar.net/BasicTypes" xmlns:ns2="http://www.alteiar.net/Campaign">
     <id>0</id>
     <unitId>0</unitId>
     <initiative>12</initiative>
-    <faction>NEUTRAL</faction>
+    <faction>ENNEMY</faction>
 </CombatUnit>

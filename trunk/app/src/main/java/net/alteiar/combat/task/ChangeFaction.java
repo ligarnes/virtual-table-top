@@ -1,7 +1,7 @@
 package net.alteiar.combat.task;
 
-import net.alteiar.combattracker.CombatUnit;
-import net.alteiar.combattracker.Faction;
+import net.alteiar.basictypes.CombatUnit;
+import net.alteiar.basictypes.Faction;
 import net.alteiar.dao.api.DaoFactorySingleton;
 import net.alteiar.db.dao.exception.DataException;
 import net.alteiar.engine.task.impl.TaskBase;
@@ -29,8 +29,7 @@ public class ChangeFaction extends TaskBase {
 		CombatUnit unit;
 		try {
 
-			unit = DaoFactorySingleton.getInstance().getCombatUnitDao()
-					.find(combatUnitId);
+			unit = DaoFactorySingleton.getInstance().getCombatUnitDao().find(combatUnitId);
 
 			unit.setFaction(faction);
 

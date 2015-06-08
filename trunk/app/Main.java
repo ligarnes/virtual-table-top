@@ -3,7 +3,6 @@ package net.alteiar;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -79,7 +78,5 @@ public class Main extends Application {
 		primaryStage.show();
 		primaryStage.setMinWidth(500);
 		primaryStage.setMinHeight(200);
-
-		primaryStage.setOnCloseRequest(we -> Platform.exit());
 	}
 }
