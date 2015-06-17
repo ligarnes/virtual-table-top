@@ -24,7 +24,7 @@ public interface Task {
 	/**
 	 * execute the task
 	 */
-	void execute();
+	void execute() throws Exception;
 
 	/**
 	 * finalize the task

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Unit xmlns="http://www.alteiar.net/BasicTypes" xmlns:ns2="http://www.alteiar.net/Campaign">
+    <id>4</id>
+    <name>test 4</name>
+    <wounds>0</wounds>
+    <healthPoint>0</healthPoint>
+    <armorClass>0</armorClass>
+    <armorClassFlatFooted>0</armorClassFlatFooted>
+    <armorClassTouch>0</armorClassTouch>
+</Unit>

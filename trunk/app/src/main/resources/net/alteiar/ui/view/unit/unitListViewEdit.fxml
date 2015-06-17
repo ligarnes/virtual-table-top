@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FlowPane fx:id="listUnits" hgap="10.0" minHeight="200.0" minWidth="200.0" vgap="10.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin></FlowPane>
+      <HBox fx:id="layoutEdit" alignment="CENTER" spacing="10.0" VBox.vgrow="NEVER">
+         <children>
+            <Button fx:id="btnAdd" mnemonicParsing="false" text="add" />
+            <Button fx:id="btnReadOnly" mnemonicParsing="false" text="ReadOnly" />
+            <Button fx:id="btnImport" mnemonicParsing="false" text="Import" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

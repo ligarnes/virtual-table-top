@@ -20,8 +20,7 @@ public class TaskEngineImpl implements TaskEngine {
 	@Override
 	public void enqueue(Task task) {
 
-		PlatformContext.getInstance().getTaskHistory()
-				.changeStatus(task, TaskStatus.IN_QUEUE);
+		PlatformContext.getInstance().getTaskHistory().changeStatus(task, TaskStatus.IN_QUEUE);
 		tasks.offer(task);
 	}
 

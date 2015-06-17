@@ -83,9 +83,9 @@ public class CombatUnitDaoImpl extends XmlDao<CombatUnit> implements CombatUnitD
 
 		CombatUnit found = null;
 
-		if (exist(CombatUnit.class, id)) {
+		if (exist(id)) {
 
-			found = loadFile(CombatUnit.class, id);
+			found = loadFile(id);
 		}
 
 		return found;

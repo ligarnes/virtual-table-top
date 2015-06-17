@@ -33,12 +33,14 @@ public class XmlDao<E extends BasicObject> extends Dao {
 
 	protected void initialize(Class<E> classe) throws JAXBException {
 
+		this.classe = classe;
+
 		jaxbContext = JAXBContext.newInstance(classe);
 
 		// find last id
 		File f = new File(getParentDir());
 
-		String prefix = getParentDir() + File.separator + classe.getSimpleName();
+		String prefix = classe.getSimpleName();
 
 		Long lastId = -1L;
 
@@ -69,7 +71,8 @@ public class XmlDao<E extends BasicObject> extends Dao {
 
 	protected long getId(String file) {
 
-		String prefix = getParentDir() + File.separator + classe.getSimpleName();
+		String prefix = classe.getSimpleName();
+		// getParentDir() + File.separator + classe.getSimpleName();
 
 		file = file.replaceFirst(prefix, "");
 		file = file.replaceFirst(".xml", "");
@@ -84,7 +87,7 @@ public class XmlDao<E extends BasicObject> extends Dao {
 		return nextId;
 	}
 
-	protected String getFilename(Class<E> classe, Long id) {
+	protected String getFilename(Long id) {
 		String filename = getParentDir() + File.separator + classe.getSimpleName() + id + ".xml";
 
 		return filename;
@@ -96,16 +99,15 @@ public class XmlDao<E extends BasicObject> extends Dao {
 		return f.exists();
 	}
 
-	protected boolean exist(Class<E> classe, Long id) {
+	protected boolean exist(Long id) {
 
-		File f = new File(getFilename(classe, id));
+		File f = new File(getFilename(id));
 		return f.exists();
 	}
 
-	@SuppressWarnings("unchecked")
 	protected String getFilename(E object) {
 
-		return getFilename((Class<E>) object.getClass(), object.getId());
+		return getFilename(object.getId());
 	}
 
 	protected void deleteFile(E object) throws DataException {
@@ -156,14 +158,14 @@ public class XmlDao<E extends BasicObject> extends Dao {
 
 			if (file.startsWith(prefix)) {
 
-				found.add(loadFile(classe, getId(file)));
+				found.add(loadFile(getId(file)));
 			}
 		}
 
 		return found;
 	}
 
-	protected E loadFile(Class<E> classe, Long id) throws DataException {
+	protected E loadFile(Long id) throws DataException {
 
 		FileInputStream inputStream = null;
 
@@ -171,7 +173,7 @@ public class XmlDao<E extends BasicObject> extends Dao {
 
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-			String filename = getFilename(classe, id);
+			String filename = getFilename(id);
 			inputStream = new FileInputStream(filename);
 
 			XMLInputFactory factory = XMLInputFactory.newInstance();

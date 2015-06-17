@@ -1,39 +1,49 @@
 package net.alteiar.engine.task.impl;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.alteiar.engine.task.Task;
 import net.alteiar.engine.task.TaskHistory;
+import net.alteiar.engine.task.TaskStatus;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TaskHistoryImpl implements TaskHistory {
 
-	private final Logger logger = LoggerFactory
-			.getLogger(TaskHistoryImpl.class);
+	private final Logger logger = LoggerFactory.getLogger("net.ateiar.TaskHistory");
 
-	private final ArrayList<TaskHistoryInfo> history;
+	private final SimpleDateFormat dateFormat;
+
+	private final Map<Long, TaskStatus> taskStatus;
 
 	public TaskHistoryImpl() {
 
-		history = new ArrayList<TaskHistoryImpl.TaskHistoryInfo>();
+		dateFormat = new SimpleDateFormat("hh:mm:ss");
+		taskStatus = new HashMap<Long, TaskStatus>();
 	}
 
 	@Override
-	public void changeStatus(Task task, String status) {
+	public void changeStatus(Task task, TaskStatus status) {
 
-		history.add(create(task, status));
-
-		statusToString(create(task, status));
-
+		taskStatus.put(task.getId(), status);
+		statusToString(create(task, status.getStatus()));
 	}
 
-	private void statusToString(TaskHistoryInfo taskHistoryInfo) {
+	public TaskStatus getStatus(Task task) {
+
+		return taskStatus.get(task);
+	}
+
+	private synchronized void statusToString(TaskHistoryInfo taskHistoryInfo) {
 
 		StringBuilder line = new StringBuilder();
 
+		line.append(dateFormat.format(taskHistoryInfo.getTime()));
+		line.append(";");
 		line.append(taskHistoryInfo.getTaskId());
 		line.append(";");
 		line.append(taskHistoryInfo.getParentId());
@@ -42,38 +52,8 @@ public class TaskHistoryImpl implements TaskHistory {
 		line.append(";");
 		line.append(taskHistoryInfo.getStatus());
 		line.append(";");
-		line.append(taskHistoryInfo.getTaskClass());
-		line.append(";");
 
-		logger.debug(line.toString());
-	}
-
-	public void saveHistory() {
-
-		StringBuilder line = new StringBuilder();
-
-		line.append("Task Id;Parent Id;Task Class;Status;Time");
-
-		System.out.println(line);
-
-		for (TaskHistoryInfo taskHistoryInfo : history) {
-
-			line = new StringBuilder();
-
-			line.append(taskHistoryInfo.getTaskId());
-			line.append(";");
-			line.append(taskHistoryInfo.getParentId());
-			line.append(";");
-			line.append(taskHistoryInfo.getTaskClass());
-			line.append(";");
-			line.append(taskHistoryInfo.getStatus());
-			line.append(";");
-			line.append(taskHistoryInfo.getTaskClass());
-			line.append(";");
-			line.append(taskHistoryInfo.getTime());
-
-			System.out.println(line);
-		}
+		logger.info(line.toString());
 	}
 
 	private TaskHistoryInfo create(Task task, String status) {

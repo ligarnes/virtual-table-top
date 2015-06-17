@@ -63,9 +63,9 @@ public class CampaignDaoImpl extends XmlDao<Campaign> implements CampaignDao {
 
 		Campaign found = null;
 
-		if (exist(Campaign.class, id)) {
+		if (exist(id)) {
 
-			found = loadFile(Campaign.class, id);
+			found = loadFile(id);
 		}
 
 		return found;

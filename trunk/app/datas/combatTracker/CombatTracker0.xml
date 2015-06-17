@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<CombatTracker xmlns="http://www.alteiar.net/CombatTracker">
+<CombatTracker xmlns="http://www.alteiar.net/BasicTypes" xmlns:ns2="http://www.alteiar.net/Campaign">
     <id>0</id>
     <combatUnitId>0</combatUnitId>
     <combatUnitId>1</combatUnitId>
+    <combatUnitId>2</combatUnitId>
     <currentTurn>0</currentTurn>
     <currentUnit>0</currentUnit>
 </CombatTracker>

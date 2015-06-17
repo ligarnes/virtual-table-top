@@ -64,9 +64,9 @@ public class CombatTrackerDaoImpl extends XmlDao<CombatTracker> implements Comba
 
 		CombatTracker found = null;
 
-		if (exist(CombatTracker.class, id)) {
+		if (exist(id)) {
 
-			found = loadFile(CombatTracker.class, id);
+			found = loadFile(id);
 		}
 
 		return found;

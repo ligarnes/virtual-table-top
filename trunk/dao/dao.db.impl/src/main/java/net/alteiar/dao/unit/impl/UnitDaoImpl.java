@@ -64,9 +64,9 @@ public class UnitDaoImpl extends XmlDao<Unit> implements UnitDao {
 
 		Unit found = null;
 
-		if (exist(Unit.class, id)) {
+		if (exist(id)) {
 
-			found = loadFile(Unit.class, id);
+			found = loadFile(id);
 		}
 
 		return found;

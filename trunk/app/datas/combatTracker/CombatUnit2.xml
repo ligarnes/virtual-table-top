@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <CombatUnit xmlns="http://www.alteiar.net/BasicTypes" xmlns:ns2="http://www.alteiar.net/Campaign">
-    <id>1</id>
-    <unitId>1</unitId>
-    <initiative>10</initiative>
+    <id>2</id>
+    <unitId>3</unitId>
     <faction>ALLY</faction>
 </CombatUnit>

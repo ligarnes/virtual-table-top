@@ -3,7 +3,9 @@
     <id>0</id>
     <name>abc</name>
     <image>file:C:\Users\ligarnes\Desktop\image-de-personnage\Thief_by_BenWootten.jpg</image>
-    <currentDamage>5</currentDamage>
+    <wounds>0</wounds>
     <healthPoint>12</healthPoint>
-    <armorClass>18</armorClass>
+    <armorClass>12</armorClass>
+    <armorClassFlatFooted>10</armorClassFlatFooted>
+    <armorClassTouch>10</armorClassTouch>
 </Unit>

@@ -62,9 +62,9 @@ public class PlayerDaoImpl extends XmlDao<Player> implements PlayerDao {
 
 		Player found = null;
 
-		if (exist(Player.class, id)) {
+		if (exist(id)) {
 
-			found = loadFile(Player.class, id);
+			found = loadFile(id);
 		}
 
 		return found;
