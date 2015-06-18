@@ -13,6 +13,7 @@ import net.alteiar.db.dao.exception.DataException;
 import net.alteiar.engine.PlatformContext;
 import net.alteiar.task.combat.AddUnitToCombat;
 import net.alteiar.ui.stage.StageController;
+import net.alteiar.ui.stage.StageManager;
 import net.alteiar.ui.view.MainView;
 
 public class Main extends Application {
@@ -80,8 +81,8 @@ public class Main extends Application {
 		primaryStage.setMinHeight(200);
 		primaryStage.setOnCloseRequest(we -> Platform.exit());
 
-		StageController stage = new StageController(primaryStage, new MainView());
+		StageManager.getInstance().addStage("main", new StageController(primaryStage, new MainView()));
 
-		stage.show();
+		StageManager.getInstance().showStage("main");
 	}
 }

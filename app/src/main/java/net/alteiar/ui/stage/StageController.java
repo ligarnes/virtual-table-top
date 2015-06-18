@@ -41,7 +41,7 @@ public class StageController {
 		}
 	}
 
-	public void show() {
+	public void initialize() {
 
 		// stage.initStyle(StageStyle.UNDECORATED);
 
@@ -56,9 +56,6 @@ public class StageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		// Fill stage with content
-		stage.show();
 	}
 
 }

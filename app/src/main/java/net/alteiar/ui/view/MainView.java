@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import net.alteiar.basictypes.CombatTracker;
 import net.alteiar.ui.stage.InternalStageController;
-import net.alteiar.ui.stage.StageController;
+import net.alteiar.ui.stage.StageManager;
 import net.alteiar.ui.view.combat.CombatTrackerView;
 import net.alteiar.ui.view.unit.UnitListView;
 
@@ -50,8 +50,15 @@ public class MainView extends FxmlViewController implements Initializable {
 
 		long campaignId = 0L;
 
-		StageController stageController = new InternalStageController(stage, new UnitListView(campaignId));
-		stageController.show();
+		String stageName = "unit.list.view." + campaignId;
+
+		if (!StageManager.getInstance().stageExist(stageName)) {
+
+			StageManager.getInstance().addStage(stageName,
+					new InternalStageController(stage, new UnitListView(campaignId)));
+		}
+
+		StageManager.getInstance().showStage(stageName);
 	}
 
 	private void openTracker() {
@@ -62,8 +69,15 @@ public class MainView extends FxmlViewController implements Initializable {
 		CombatTracker cbTracker = new CombatTracker();
 		cbTracker.setId(0L);
 
-		StageController stageController = new InternalStageController(stage, new CombatTrackerView(cbTracker));
-		stageController.show();
+		String stageName = "combat.tracker." + cbTracker.getId();
+
+		if (!StageManager.getInstance().stageExist(stageName)) {
+
+			StageManager.getInstance().addStage(stageName,
+					new InternalStageController(stage, new CombatTrackerView(cbTracker)));
+		}
+
+		StageManager.getInstance().showStage(stageName);
 	}
 
 	private void revalidate() {

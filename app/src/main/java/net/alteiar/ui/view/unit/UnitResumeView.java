@@ -11,12 +11,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import net.alteiar.basictypes.Unit;
 import net.alteiar.dao.api.DaoFactorySingleton;
 import net.alteiar.db.dao.UnitDao;
 import net.alteiar.db.dao.exception.DataException;
 import net.alteiar.engine.observer.DataModificationAdapter;
 import net.alteiar.ui.stage.InternalStageController;
+import net.alteiar.ui.stage.StageManager;
 import net.alteiar.ui.view.FxmlViewController;
 
 public class UnitResumeView extends FxmlViewController implements Initializable {
@@ -82,12 +84,18 @@ public class UnitResumeView extends FxmlViewController implements Initializable 
 
 	private void viewUnit() {
 
-		Platform.runLater(() -> {
+		Stage stage = new Stage();
+		stage.setTitle(getUnit().getName());
 
-			InternalStageController stage = new InternalStageController(new UnitView(characterId));
-			stage.show();
-		});
+		String stageName = "unit.view." + characterId;
 
+		if (!StageManager.getInstance().stageExist(stageName)) {
+
+			StageManager.getInstance().addStage(stageName,
+					new InternalStageController(stage, new UnitView(characterId)));
+		}
+
+		StageManager.getInstance().showStage(stageName);
 	}
 
 	private void revalidate() {

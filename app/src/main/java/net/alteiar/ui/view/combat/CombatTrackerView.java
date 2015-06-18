@@ -137,7 +137,6 @@ public class CombatTrackerView extends FxmlViewController implements Initializab
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		}
 	}
