@@ -1,3 +1,9 @@
 trunk/dao/dao.core/target/
 trunk/dao/dao.db.api/target/
 *.project
+app/.settings/
+dao/dao.db.api/target/
+dao/dao.db.impl/.settings/
+dao/dao.core/target/
+app/target/
+engine/target/

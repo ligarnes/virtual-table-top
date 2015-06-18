@@ -1,0 +1,9 @@
+net\alteiar\dao\util\DatabaseDao.class
+net\alteiar\dao\unit\impl\UnitDaoImpl.class
+net\alteiar\dao\combat\impl\CombatUnitDaoImpl.class
+net\alteiar\dao\util\Util.class
+net\alteiar\dao\api\DaoFactorySingleton.class
+net\alteiar\dao\combat\impl\CombatTrackerDaoImpl.class
+net\alteiar\dao\campaign\impl\PlayerDaoImpl.class
+net\alteiar\dao\util\XmlDao.class
+net\alteiar\dao\campaign\impl\CampaignDaoImpl.class
