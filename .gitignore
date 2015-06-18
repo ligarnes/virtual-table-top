@@ -1,9 +1,12 @@
-trunk/dao/dao.core/target/
-trunk/dao/dao.db.api/target/
 *.project
+*.classpath
+app/target/
 app/.settings/
 dao/dao.db.api/target/
+dao/dao.db.api/.settings/
+dao/dao.db.impl/target/
 dao/dao.db.impl/.settings/
 dao/dao.core/target/
-app/target/
+dao/dao.core/.settings/
 engine/target/
+engine/.settings/
