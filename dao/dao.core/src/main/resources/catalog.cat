@@ -1,2 +1,2 @@
-PUBLIC "http://www.alteiar.net/BasicTypes" "maven:com.trilliantnetworks.platform:framework:jar::!/BasicTypes.xsd"
-PUBLIC "http://www.alteiar.net/Campaign" "maven:com.trilliantnetworks.platform:framework:jar::!/Campaign.xsd"
+PUBLIC "http://www.alteiar.net/BasicTypes" "maven:net.alteiar.dao:dao.core:jar::!/BasicTypes.xsd"
+PUBLIC "http://www.alteiar.net/Campaign" "maven:net.alteiar.dao:dao.core:jar::!/Campaign.xsd"
