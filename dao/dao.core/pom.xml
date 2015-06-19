@@ -41,11 +41,12 @@
 						</goals>
 
 						<configuration>
-						    <schemaDirectory>src/main/resources/schema</schemaDirectory>
-                            <bindingDirectory>src/main/resources/schema</bindingDirectory>
-							
-							<extension>true</extension>
-							<locale>en</locale>
+						    <schemaDirectory>src/main/resources</schemaDirectory>
+                            <bindingDirectory>src/main/resources</bindingDirectory>
+                            <catalog>src/main/resources/catalog.cat</catalog>
+                            <extension>true</extension>
+                            <locale>en</locale>
+                            <strict>false</strict>
 							
 							<plugins>
 								<dependency>
