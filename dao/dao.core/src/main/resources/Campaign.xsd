@@ -5,7 +5,7 @@
 	xmlns:bt="http://www.alteiar.net/BasicTypes"
 	elementFormDefault="qualified" attributeFormDefault="unqualified">
 
-   <import schemaLocation="/BasicTypes.xsd"  namespace="http://www.alteiar.net/BasicTypes"/>
+   <import namespace="http://www.alteiar.net/BasicTypes"/>
 
 	<element name="Campaign" type="cm:Campaign" />
     <element name="Player" type="cm:Player" />

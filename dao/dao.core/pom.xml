@@ -41,6 +41,9 @@
 						</goals>
 
 						<configuration>
+						    <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                            <bindingDirectory>src/main/resources/schema</bindingDirectory>
+							
 							<extension>true</extension>
 							<locale>en</locale>
 							
