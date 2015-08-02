@@ -10,7 +10,8 @@ import net.alteiar.db.dao.exception.DataException;
 
 import org.slf4j.LoggerFactory;
 
-public class CombatTrackerDaoImpl extends XmlDao<CombatTracker> implements CombatTrackerDao {
+public class CombatTrackerDaoImpl extends XmlDao<CombatTracker> implements
+		CombatTrackerDao {
 
 	public void initialize() {
 
@@ -19,7 +20,8 @@ public class CombatTrackerDaoImpl extends XmlDao<CombatTracker> implements Comba
 			super.initialize(CombatTracker.class);
 		} catch (JAXBException e) {
 
-			LoggerFactory.getLogger(getClass()).error("Fail to initialize the dao", e);
+			LoggerFactory.getLogger(getClass()).error(
+					"Fail to initialize the dao", e);
 		}
 	}
 
@@ -30,8 +32,9 @@ public class CombatTrackerDaoImpl extends XmlDao<CombatTracker> implements Comba
 
 		if (exist(combatTracker)) {
 
-			String errorMsg = String.format("Fail to insert the combat tracker {%s}, the combat tracker already exist",
-					combatTracker.getId());
+			String errorMsg = String
+					.format("Fail to insert the combat tracker {%s}, the combat tracker already exist",
+							combatTracker.getId());
 			throw new DataException(errorMsg);
 		}
 
@@ -53,8 +56,9 @@ public class CombatTrackerDaoImpl extends XmlDao<CombatTracker> implements Comba
 			fireDataChanged(combatTracker.getId());
 		} else {
 
-			String errorMsg = String.format("The combat tracker {%s} does not exist and cannot be updated",
-					combatTracker.getId());
+			String errorMsg = String
+					.format("The combat tracker {%s} does not exist and cannot be updated",
+							combatTracker.getId());
 			throw new DataException(errorMsg);
 		}
 	}
@@ -82,8 +86,9 @@ public class CombatTrackerDaoImpl extends XmlDao<CombatTracker> implements Comba
 			fireDataRemoved(combatUnit.getId());
 		} else {
 
-			String errorMsg = String.format(
-					"Fail to delete the combat tracker {%s}, the combat tracker does not exist", combatUnit.getId());
+			String errorMsg = String
+					.format("Fail to delete the combat tracker {%s}, the combat tracker does not exist",
+							combatUnit.getId());
 			throw new DataException(errorMsg);
 		}
 	}

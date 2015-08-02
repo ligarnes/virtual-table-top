@@ -10,7 +10,8 @@ import net.alteiar.db.dao.exception.DataException;
 
 import org.slf4j.LoggerFactory;
 
-public class CombatUnitDaoImpl extends XmlDao<CombatUnit> implements CombatUnitDao {
+public class CombatUnitDaoImpl extends XmlDao<CombatUnit> implements
+		CombatUnitDao {
 
 	public void initialize() {
 
@@ -19,7 +20,8 @@ public class CombatUnitDaoImpl extends XmlDao<CombatUnit> implements CombatUnitD
 			super.initialize(CombatUnit.class);
 		} catch (JAXBException e) {
 
-			LoggerFactory.getLogger(getClass()).error("Fail to initialize the dao", e);
+			LoggerFactory.getLogger(getClass()).error(
+					"Fail to initialize the dao", e);
 		}
 	}
 
@@ -30,8 +32,9 @@ public class CombatUnitDaoImpl extends XmlDao<CombatUnit> implements CombatUnitD
 
 		if (exist(combatUnit)) {
 
-			String errorMsg = String.format("Fail to insert the combat unit {%s}, the combat unit already exist",
-					combatUnit.getId());
+			String errorMsg = String
+					.format("Fail to insert the combat unit {%s}, the combat unit already exist",
+							combatUnit.getId());
 			throw new DataException(errorMsg);
 		}
 
@@ -72,8 +75,9 @@ public class CombatUnitDaoImpl extends XmlDao<CombatUnit> implements CombatUnitD
 			fireDataChanged(combatUnit.getId());
 		} else {
 
-			String errorMsg = String.format("The combat unit {%s} does not exist and cannot be updated",
-					combatUnit.getId());
+			String errorMsg = String
+					.format("The combat unit {%s} does not exist and cannot be updated",
+							combatUnit.getId());
 			throw new DataException(errorMsg);
 		}
 	}
@@ -101,8 +105,9 @@ public class CombatUnitDaoImpl extends XmlDao<CombatUnit> implements CombatUnitD
 			fireDataRemoved(combatUnit.getId());
 		} else {
 
-			String errorMsg = String.format("Fail to delete the combat unit {%s}, the combat unit does not exist",
-					combatUnit.getId());
+			String errorMsg = String
+					.format("Fail to delete the combat unit {%s}, the combat unit does not exist",
+							combatUnit.getId());
 			throw new DataException(errorMsg);
 		}
 	}

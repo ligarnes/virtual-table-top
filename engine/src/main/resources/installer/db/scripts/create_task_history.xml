@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SqlScript xmlns="http://www.alteiar.net/sql">
+	<name>create_task_history</name>
+	<description>create the table task history</description>
+	<query>CREATE TABLE task_history (task_id bigint auto_increment, parent_id bigint, task_name varchar(120), status varchar(20), creation_time datetime, start_time datetime, end_time datetime, modification_time datetime)</query>
+</SqlScript>

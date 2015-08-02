@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema targetNamespace="http://www.alteiar.net/BasicTypes"
+	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bt="http://www.alteiar.net/BasicTypes"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<element name="Unit" type="bt:Unit" />
+    <element name="CombatTracker" type="bt:CombatTracker" />
+    <element name="CombatUnit" type="bt:CombatUnit" />
+
+	<complexType name="BasicObject">
+		<sequence>
+			<element name="id" type="long" minOccurs="1" maxOccurs="1" />
+		</sequence>
+	</complexType>
+
+    <!-- Unit -->
+	<complexType name="Unit">
+		<complexContent>
+			<extension base="bt:BasicObject">
+				<sequence>
+					<element name="name" type="string" minOccurs="1" maxOccurs="1" />
+					<element name="image" type="string" minOccurs="1" maxOccurs="1" />
+					<element name="wounds" type="int" minOccurs="1" maxOccurs="1" />
+					<element name="healthPoint" type="int" minOccurs="1" maxOccurs="1" />
+					<element name="armorClass" type="int" minOccurs="1" maxOccurs="1" />
+                    <element name="armorClassFlatFooted" type="int" minOccurs="1" maxOccurs="1" />
+                    <element name="armorClassTouch" type="int" minOccurs="1" maxOccurs="1" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+    <!-- Combat Tracker -->
+	<complexType name="CombatTracker">
+        <complexContent>
+            <extension base="bt:BasicObject">
+                <sequence>
+                    <element name="combatUnitId" type="long" minOccurs="0"  maxOccurs="unbounded" />
+                    <element name="currentTurn" type="int" minOccurs="1"
+                        maxOccurs="1" />
+                    <element name="currentUnit" type="int" minOccurs="1"
+                        maxOccurs="1" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="CombatUnit">
+        <complexContent>
+            <extension base="bt:BasicObject">
+                <sequence>
+                    <element name="unitId" type="long" minOccurs="1" maxOccurs="1" />
+                    <element name="initiative" type="int" minOccurs="0"
+                        maxOccurs="1" />
+                    <element name="faction" type="bt:Faction" minOccurs="1"
+                        maxOccurs="1" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="Faction">
+        <restriction base="string">
+            <enumeration value="NONE" />
+            <enumeration value="NEUTRAL" />
+            <enumeration value="ALLY" />
+            <enumeration value="ENNEMY" />
+        </restriction>
+    </simpleType>
+	
+
+</schema>
