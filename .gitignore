@@ -10,3 +10,11 @@ dao/dao.core/target/
 dao/dao.core/.settings/
 engine/target/
 engine/.settings/
+dao/objects/target/
+dao/objects/.settings/
+ruleset/pathfinder/target/
+ruleset/pathfinder/.settings/
+logger/target/
+logger/.settings/
+dao/target/
+ruleset/target/
