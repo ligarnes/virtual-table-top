@@ -73,7 +73,7 @@ public class TaskHistoryImpl implements TaskHistory {
         TaskHistoryEntry entry = new TaskHistoryEntry();
         entry.setTask(task);
 
-        if (TaskStatus.START.equals(status)) {
+        if (TaskStatus.STARTED.equals(status)) {
 
             entry.setStartTime(new Date());
         }

@@ -18,3 +18,5 @@ logger/target/
 logger/.settings/
 dao/target/
 ruleset/target/
+target/
+*.db

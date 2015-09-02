@@ -9,8 +9,6 @@ import net.alteiar.core.engine.task.TaskEngine;
 import net.alteiar.core.engine.task.TaskStatus;
 import net.alteiar.core.engine.task.TaskStrategy;
 
-import org.slf4j.LoggerFactory;
-
 public class LocalTaskEngineImpl implements TaskEngine {
 
     private final BlockingQueue<Task> tasks;
@@ -57,13 +55,7 @@ public class LocalTaskEngineImpl implements TaskEngine {
             task.setId(id);
         }
 
-        try {
-            strategy.executeTask(task);
-        } catch (Throwable e) {
-
-            LoggerFactory.getLogger(TaskEngine.class).debug(
-                    "An exception occur while executing the task {} with id {}", task.getClass(), task.getId(), e);
-        }
+        strategy.executeTask(task);
     }
 
 }

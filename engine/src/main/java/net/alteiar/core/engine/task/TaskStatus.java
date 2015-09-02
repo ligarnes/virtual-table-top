@@ -1,12 +1,12 @@
 package net.alteiar.core.engine.task;
 
-public class TaskStatus {
+public final class TaskStatus {
 
     public static final TaskStatus IN_QUEUE = new TaskStatus("IN_QUEUE", false);
     public static final TaskStatus NEW = new TaskStatus("NEW", false);
-    public static final TaskStatus START = new TaskStatus("START", false);
+    public static final TaskStatus STARTED = new TaskStatus("STARTED", false);
     public static final TaskStatus INITIALIZED = new TaskStatus("INITIALIZED", false);
-    public static final TaskStatus SUCCESS = new TaskStatus("SUCCEED", true);
+    public static final TaskStatus SUCCEED = new TaskStatus("SUCCEED", true);
     public static final TaskStatus FAILED = new TaskStatus("FAILED", true);
 
     private final String status;
@@ -15,7 +15,11 @@ public class TaskStatus {
 
     private TaskStatus(String status, boolean isFinal) {
 
+        if (status == null) {
+            throw new IllegalArgumentException("The status must be not null");
+        }
         this.status = status;
+
         this.isFinal = isFinal;
     }
 
@@ -43,6 +47,7 @@ public class TaskStatus {
 
     @Override
     public boolean equals(Object obj) {
+
         if (this == obj) {
             return true;
         }
@@ -54,14 +59,8 @@ public class TaskStatus {
         }
 
         TaskStatus other = (TaskStatus) obj;
-        if (status == null) {
-            if (other.status != null) {
-                return false;
-            }
-        } else if (!status.equals(other.status)) {
-            return false;
-        }
-        return true;
+
+        return status.equals(other.status);
     }
 
     public static TaskStatus valueOf(String status) {
@@ -74,15 +73,15 @@ public class TaskStatus {
         } else if (NEW.getStatus().equalsIgnoreCase(status)) {
 
             valueOf = NEW;
-        } else if (START.getStatus().equalsIgnoreCase(status)) {
+        } else if (STARTED.getStatus().equalsIgnoreCase(status)) {
 
-            valueOf = START;
+            valueOf = STARTED;
         } else if (INITIALIZED.getStatus().equalsIgnoreCase(status)) {
 
             valueOf = INITIALIZED;
-        } else if (SUCCESS.getStatus().equalsIgnoreCase(status)) {
+        } else if (SUCCEED.getStatus().equalsIgnoreCase(status)) {
 
-            valueOf = SUCCESS;
+            valueOf = SUCCEED;
         } else if (FAILED.getStatus().equalsIgnoreCase(status)) {
 
             valueOf = FAILED;

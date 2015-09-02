@@ -2,6 +2,7 @@ package net.alteiar.core.engine.task.impl;
 
 import net.alteiar.core.engine.PlatformContext;
 import net.alteiar.core.engine.task.Task;
+import net.alteiar.core.engine.task.TaskEngine;
 import net.alteiar.core.engine.task.TaskStatus;
 import net.alteiar.core.engine.task.TaskStrategy;
 import net.alteiar.layouts.ThreadTaskLogger;
@@ -10,13 +11,14 @@ import org.slf4j.LoggerFactory;
 
 public class TaskStrategyImpl implements TaskStrategy {
 
-    public void executeTask(Task task) throws Throwable {
+    @Override
+    public void executeTask(Task task) {
 
         try {
 
             ThreadTaskLogger.setTaskId(task.getId());
 
-            PlatformContext.getInstance().getTaskHistory().changeStatus(task, TaskStatus.START);
+            PlatformContext.getInstance().getTaskHistory().changeStatus(task, TaskStatus.STARTED);
 
             task.initializeTask();
 
@@ -24,13 +26,14 @@ public class TaskStrategyImpl implements TaskStrategy {
 
             task.execute();
 
-            PlatformContext.getInstance().getTaskHistory().changeStatus(task, TaskStatus.SUCCESS);
+            PlatformContext.getInstance().getTaskHistory().changeStatus(task, TaskStatus.SUCCEED);
 
         } catch (Throwable ex) {
 
             PlatformContext.getInstance().getTaskHistory().changeStatus(task, TaskStatus.FAILED);
 
-            throw ex;
+            LoggerFactory.getLogger(TaskEngine.class).debug(
+                    "An exception occur while executing the task {} with id {}", task.getClass(), task.getId(), ex);
         } finally {
 
             try {
@@ -38,7 +41,7 @@ public class TaskStrategyImpl implements TaskStrategy {
                 task.finalizeTask();
             } catch (Throwable ex) {
 
-                LoggerFactory.getLogger(TaskStrategyImpl.class).debug("Exception occur during finalization", ex);
+                LoggerFactory.getLogger(TaskStrategy.class).debug("Exception occur during finalization", ex);
             }
         }
     }

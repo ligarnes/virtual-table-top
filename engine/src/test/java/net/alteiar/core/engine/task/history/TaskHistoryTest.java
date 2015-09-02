@@ -61,11 +61,11 @@ public class TaskHistoryTest {
         taskHistory.changeStatus(t, TaskStatus.INITIALIZED);
         Assert.assertEquals(TaskStatus.INITIALIZED, taskHistory.getStatus(1l));
 
-        taskHistory.changeStatus(t, TaskStatus.START);
-        Assert.assertEquals(TaskStatus.START, taskHistory.getStatus(1l));
+        taskHistory.changeStatus(t, TaskStatus.STARTED);
+        Assert.assertEquals(TaskStatus.STARTED, taskHistory.getStatus(1l));
 
-        taskHistory.changeStatus(t, TaskStatus.SUCCESS);
-        Assert.assertEquals(TaskStatus.SUCCESS, taskHistory.getStatus(1l));
+        taskHistory.changeStatus(t, TaskStatus.SUCCEED);
+        Assert.assertEquals(TaskStatus.SUCCEED, taskHistory.getStatus(1l));
 
         taskHistory.changeStatus(t, TaskStatus.FAILED);
         Assert.assertEquals(TaskStatus.FAILED, taskHistory.getStatus(1l));
@@ -90,8 +90,8 @@ public class TaskHistoryTest {
         taskHistory.changeStatus(t, TaskStatus.INITIALIZED);
         Assert.assertEquals(TaskStatus.INITIALIZED, taskHistory.getStatus(1L));
 
-        Mockito.when(dao.getStatus(2L)).thenReturn(TaskStatus.SUCCESS.toString());
-        Assert.assertEquals(TaskStatus.SUCCESS, taskHistory.getStatus(2L));
+        Mockito.when(dao.getStatus(2L)).thenReturn(TaskStatus.SUCCEED.toString());
+        Assert.assertEquals(TaskStatus.SUCCEED, taskHistory.getStatus(2L));
     }
 
     @Test
@@ -102,7 +102,7 @@ public class TaskHistoryTest {
         final Task t = new TaskEmpty();
         t.setId(2L);
 
-        taskHistory.changeStatus(t, TaskStatus.START);
+        taskHistory.changeStatus(t, TaskStatus.STARTED);
 
         Thread tr = new Thread(() -> {
             try {
@@ -111,13 +111,13 @@ public class TaskHistoryTest {
                 Assert.fail(e.getMessage());
             }
 
-            taskHistory.changeStatus(t, TaskStatus.SUCCESS);
+            taskHistory.changeStatus(t, TaskStatus.SUCCEED);
         });
 
         tr.start();
         TaskStatus tStatus = taskHistory.waitFor(2L);
 
-        Assert.assertEquals(TaskStatus.SUCCESS, tStatus);
+        Assert.assertEquals(TaskStatus.SUCCEED, tStatus);
     }
 
     @Test
@@ -128,7 +128,7 @@ public class TaskHistoryTest {
         final Task t = new TaskEmpty();
         t.setId(2L);
 
-        taskHistory.changeStatus(t, TaskStatus.START);
+        taskHistory.changeStatus(t, TaskStatus.STARTED);
 
         Thread tr = new Thread(() -> {
             try {
@@ -137,13 +137,13 @@ public class TaskHistoryTest {
                 Assert.fail(e.getMessage());
             }
 
-            taskHistory.changeStatus(t, TaskStatus.SUCCESS);
+            taskHistory.changeStatus(t, TaskStatus.SUCCEED);
         });
 
         tr.start();
         TaskStatus tStatus = taskHistory.waitFor(2L, 200L);
 
-        Assert.assertEquals(TaskStatus.START, tStatus);
+        Assert.assertEquals(TaskStatus.STARTED, tStatus);
     }
 
     @Test
@@ -154,7 +154,7 @@ public class TaskHistoryTest {
         final Task t = new TaskEmpty();
         t.setId(2L);
 
-        taskHistory.changeStatus(t, TaskStatus.START);
+        taskHistory.changeStatus(t, TaskStatus.STARTED);
 
         Thread tr = new Thread(() -> {
             try {
@@ -163,13 +163,13 @@ public class TaskHistoryTest {
                 Assert.fail(e.getMessage());
             }
 
-            taskHistory.changeStatus(t, TaskStatus.SUCCESS);
+            taskHistory.changeStatus(t, TaskStatus.SUCCEED);
         });
 
         tr.start();
         TaskStatus tStatus = taskHistory.waitFor(2L, 2000L);
 
-        Assert.assertEquals(TaskStatus.SUCCESS, tStatus);
+        Assert.assertEquals(TaskStatus.SUCCEED, tStatus);
     }
 
     @Test
@@ -182,14 +182,14 @@ public class TaskHistoryTest {
         final Task t = new TaskEmpty();
         t.setId(2L);
 
-        taskHistory.changeStatus(t, TaskStatus.START);
+        taskHistory.changeStatus(t, TaskStatus.STARTED);
         taskHistory.changeStatus(t, TaskStatus.FAILED);
         taskHistory.changeStatus(new TaskEmpty(), TaskStatus.IN_QUEUE);
-        taskHistory.changeStatus(new TaskEmpty(), TaskStatus.SUCCESS);
+        taskHistory.changeStatus(new TaskEmpty(), TaskStatus.SUCCEED);
         taskHistory.changeStatus(new TaskEmpty(), TaskStatus.IN_QUEUE);
         taskHistory.changeStatus(new TaskEmpty(), TaskStatus.NEW);
         taskHistory.changeStatus(new TaskEmpty(), TaskStatus.IN_QUEUE);
-        taskHistory.changeStatus(new TaskEmpty(), TaskStatus.START);
+        taskHistory.changeStatus(new TaskEmpty(), TaskStatus.STARTED);
 
         taskHistory.shutdown();
 

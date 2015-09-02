@@ -19,7 +19,7 @@ public class TaskHistoryEntryTest {
 
         long id = 10L;
         Long parentId = 8L;
-        TaskStatus status = TaskStatus.START;
+        TaskStatus status = TaskStatus.STARTED;
 
         Task task = new TaskEmpty();
         task.setId(id);
@@ -50,7 +50,7 @@ public class TaskHistoryEntryTest {
 
         long id = 10L;
         Long parentId = 8L;
-        TaskStatus status = TaskStatus.START;
+        TaskStatus status = TaskStatus.STARTED;
 
         Task task = new TaskEmpty();
         task.setId(id);
