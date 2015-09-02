@@ -88,7 +88,8 @@ public class XmlDao<E extends BasicObject> extends Dao {
 	}
 
 	protected String getFilename(Long id) {
-		String filename = getParentDir() + File.separator + classe.getSimpleName() + id + ".xml";
+		String filename = getParentDir() + File.separator
+				+ classe.getSimpleName() + id + ".xml";
 
 		return filename;
 	}
@@ -116,8 +117,9 @@ public class XmlDao<E extends BasicObject> extends Dao {
 
 		if (!f.delete()) {
 
-			String errorMsg = String.format("Fail to delete the object {%s} with id {%s}", object.getClass()
-					.getSimpleName(), object.getId());
+			String errorMsg = String.format(
+					"Fail to delete the object {%s} with id {%s}", object
+							.getClass().getSimpleName(), object.getId());
 			throw new DataException(errorMsg);
 		}
 	}
@@ -138,8 +140,10 @@ public class XmlDao<E extends BasicObject> extends Dao {
 
 		} catch (JAXBException | FileNotFoundException e) {
 
-			String errorMsg = String.format("Fail to save the object {%s} with id {%s}", object.getDeclaredType()
-					.getSimpleName(), object.getValue().getId());
+			String errorMsg = String.format(
+					"Fail to save the object {%s} with id {%s}", object
+							.getDeclaredType().getSimpleName(), object
+							.getValue().getId());
 			throw new DataException(errorMsg, e);
 		} finally {
 			Util.close(output);
@@ -152,7 +156,8 @@ public class XmlDao<E extends BasicObject> extends Dao {
 
 		File f = new File(getParentDir());
 
-		String prefix = getParentDir() + File.separator + classe.getSimpleName();
+		String prefix = getParentDir() + File.separator
+				+ classe.getSimpleName();
 
 		for (String file : f.list()) {
 
@@ -183,7 +188,8 @@ public class XmlDao<E extends BasicObject> extends Dao {
 
 		} catch (FileNotFoundException | JAXBException | XMLStreamException e) {
 
-			String errorMsg = String.format("Fail to load the combat unit {%s}", id);
+			String errorMsg = String.format(
+					"Fail to load the combat unit {%s}", id);
 			throw new DataException(errorMsg, e);
 		} finally {
 			Util.close(inputStream);

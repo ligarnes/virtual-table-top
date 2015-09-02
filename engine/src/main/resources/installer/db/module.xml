@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SqlFileModule xmlns="http://www.alteiar.net/sql">
+	<name>Engine Core</name>
+	<description>The script required for the core engine</description>
+	<dir>/installer/db/scripts</dir>
+    <script>create_task_history</script>
+</SqlFileModule>

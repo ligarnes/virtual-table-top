@@ -79,7 +79,8 @@ public class DaoFactorySingleton implements XmlDaoFactory {
 			playerDao.setParentDir(playerDir.getCanonicalPath());
 		} catch (IOException e) {
 
-			LoggerFactory.getLogger(getClass()).error("Fail to retrieve the canonical file", e);
+			LoggerFactory.getLogger(getClass()).error(
+					"Fail to retrieve the canonical file", e);
 		}
 	}
 
